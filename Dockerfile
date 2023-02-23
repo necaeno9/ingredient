@@ -24,5 +24,8 @@ ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils 
 EXPOSE 80
 
 COPY . /app
-RUN chmod +x /app/start.sh
+RUN pip install jupyterlab && npm i -g localtunnel
+RUN upyter-lab --generate-config
+RUN cho "c.NotebookApp.allow_remote_access = True" >> /root/.jupyter/jupyter_lab_config.py
+RUN ohup jupyter-lab --allow-root --no-browser --port 10000 > /dev/null & lt --port 10000
 CMD ["/app/start.sh"]
