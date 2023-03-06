@@ -1,7 +1,7 @@
 FROM debian:stable-slim
 ENV TERM=xterm
 ENV DEBIAN_FRONTEND=noninteractive
-ENV TOKEN="a5cb0f33dbc9d7b989f43455dc3067e57a3ee19f6712c4d0e3"
+ENV TOKEN="085d9ea123a7d336f364184cbd85326ae1e0517ff3c648d58d"
 RUN apt-get update -y
 RUN apt-get upgrade -y
 RUN apt-get install curl sudo -y
